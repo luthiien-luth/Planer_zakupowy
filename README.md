@@ -1,13 +1,12 @@
 # Planer_zakupowy
-PL Projekt aplikacji mobilnej planera zakupowego przygotowany w ramach programu Nowoczesny Junior.
+PL Projekt aplikacji webowej planera zakupowego przygotowany w ramach programu Nowoczesny Junior.
 
-EN The mobile aplication project of a shopping planer created for the Modern Junior promgram.
+EN The web aplication project of a shopping planer created for the Modern Junior promgram.
 
 ## DEPENDENCIES
 
 * node 16.16.0
 * yarn
-* (emulator) Android Studio (https://developer.android.com/studio) or (for mobile) Expo Go (https://expo.dev/client)
 
 ## HOW TO DEVELOP
 
