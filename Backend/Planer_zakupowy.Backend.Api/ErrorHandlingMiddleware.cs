@@ -1,4 +1,4 @@
-﻿using Planer_zakupowy.Backend.Domain.Exceptions;
+﻿using Planer_zakupowy.Backend.Application.Exceptions;
 
 namespace Planer_zakupowy.Backend.Api
 {

@@ -1,5 +1,5 @@
-﻿using Planer_zakupowy.Backend.Domain.Entities;
-using Planer_zakupowy.Backend.Domain.Repositories;
+﻿using Planer_zakupowy.Backend.Application.Repositories;
+using Planer_zakupowy.Backend.Domain.Entities;
 using UserDb = Planer_zakupowy.Backend.DataAccess.Models.User;
 
 namespace Planer_zakupowy.Backend.DataAccess.Repositories

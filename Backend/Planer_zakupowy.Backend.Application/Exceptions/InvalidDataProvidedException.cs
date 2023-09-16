@@ -1,4 +1,4 @@
-﻿namespace Planer_zakupowy.Backend.Domain.Exceptions
+﻿namespace Planer_zakupowy.Backend.Application.Exceptions
 {
     public class InvalidDataProvidedException : Exception
     {

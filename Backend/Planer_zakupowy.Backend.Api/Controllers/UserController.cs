@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Planer_zakupowy.Backend.Api.Factories.Interfaces;
 using Planer_zakupowy.Backend.Api.RequestModels;
-using Planer_zakupowy.Backend.Domain.Interfaces;
+using Planer_zakupowy.Backend.Application.Interfaces;
 
 namespace Planer_zakupowy.Backend.Api.Controllers
 {
