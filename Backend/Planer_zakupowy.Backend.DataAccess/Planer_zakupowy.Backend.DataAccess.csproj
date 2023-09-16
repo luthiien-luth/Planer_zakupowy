@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Planer_zakupowy.Backend.Application\Planer_zakupowy.Backend.Application.csproj" />
     <ProjectReference Include="..\Planer_zakupowy.Backend.Domain\Planer_zakupowy.Backend.Domain.csproj" />
   </ItemGroup>
 

@@ -1,9 +1,9 @@
-﻿using Planer_zakupowy.Backend.Domain.Entities;
-using Planer_zakupowy.Backend.Domain.Exceptions;
-using Planer_zakupowy.Backend.Domain.Interfaces;
-using Planer_zakupowy.Backend.Domain.Repositories;
+﻿using Planer_zakupowy.Backend.Application.Exceptions;
+using Planer_zakupowy.Backend.Application.Interfaces;
+using Planer_zakupowy.Backend.Application.Repositories;
+using Planer_zakupowy.Backend.Domain.Entities;
 
-namespace Planer_zakupowy.Backend.Domain.Services
+namespace Planer_zakupowy.Backend.Application.Services
 {
     public class UserService : IUserService
     {
