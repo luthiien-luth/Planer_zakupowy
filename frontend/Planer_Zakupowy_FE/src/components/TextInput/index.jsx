@@ -1,3 +1,3 @@
-import { TextInput } from './TextTest';
+import { TextInput } from './TextInput';
 
 export default TextInput;
