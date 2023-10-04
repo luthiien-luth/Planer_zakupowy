@@ -1,3 +1,4 @@
+//komponent Button
 import Button from '@mui/material/Button';
 
 const ButtonWrapper = ({ variant, color, size, onClick, children, ...rest }) => {
