@@ -1,4 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd ./frontend/planer_zakupowy_fe && yarn lint-staged && yarn lint
+cd ./frontend/Planer_Zakupowy_FE && yarn lint-staged && yarn lint
+
+
