@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using Planer_zakupowy.Backend.Api;
 using Planer_zakupowy.Backend.Api.Factories;
 using Planer_zakupowy.Backend.Api.Factories.Interfaces;
 using Planer_zakupowy.Backend.Application.Interfaces;
 using Planer_zakupowy.Backend.Application.Repositories;
 using Planer_zakupowy.Backend.Application.Services;
+using Planer_zakupowy.Backend.Application.Validator;
 using Planer_zakupowy.Backend.DataAccess;
 using Planer_zakupowy.Backend.DataAccess.Repositories;
 
@@ -16,6 +18,8 @@ builder.Services.AddDbContext<Planer_zakupowyDbContext>(opt => opt.UseSqlServer(
 builder.Services.AddTransient<IUserFactory, UserFactory>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IValidator, Validator>();
+builder.Services.AddTransient<ErrorHandlingMiddleware>();
 
 builder.Services.AddSwaggerGen();
 
@@ -28,6 +32,7 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty;
 });
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.MapControllers();
 
 app.Run();

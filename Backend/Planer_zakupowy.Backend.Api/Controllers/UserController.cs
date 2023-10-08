@@ -11,17 +11,20 @@ namespace Planer_zakupowy.Backend.Api.Controllers
     {
         private readonly IUserService _userService;
         private readonly IUserFactory _userFactory;
+        private readonly IValidator _validator;
 
-        public UserController(IUserService userService, IUserFactory userFactory)
+        public UserController(IUserService userService, IUserFactory userFactory, IValidator validator)
         {
             _userService = userService;
             _userFactory = userFactory;
+            _validator = validator;
         }
 
         [HttpPost]
         [Route("actions/register")]
         public string Register([FromBody] RegisterUserRequestModel registerUser)
         {
+            _validator.ValidateRegistrationData(registerUser.Email, registerUser.Password);
             var registeredUser = _userService.Register(registerUser.Email, registerUser.Password);
 
             var responseUser = _userFactory.Create(registeredUser);
