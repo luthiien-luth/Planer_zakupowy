@@ -16,7 +16,7 @@ namespace Planer_zakupowy.Backend.Api
                 {
                     case InvalidDataProvidedException:
                         context.Response.StatusCode = 400;
-                        await context.Response.WriteAsync(ex.Message);
+                        await context.Response.WriteAsJsonAsync(ex.Message);
                         break;
                 }
             }
