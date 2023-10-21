@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Planer_zakupowy.Backend.Api.Factories.Interfaces;
 using Planer_zakupowy.Backend.Api.RequestModels;
 using Planer_zakupowy.Backend.Application.Interfaces;
+using System.Security.Claims;
 
 namespace Planer_zakupowy.Backend.Api.Controllers
 {
@@ -20,16 +22,28 @@ namespace Planer_zakupowy.Backend.Api.Controllers
             _validator = validator;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("actions/register")]
-        public string Register([FromBody] RegisterUserRequestModel registerUser)
+        public string Register([FromBody] RegisterUserRequestModel registrationRequestModel)
         {
-            _validator.ValidateRegistrationData(registerUser.Email, registerUser.Password);
-            var registeredUser = _userService.Register(registerUser.Email, registerUser.Password);
+            _validator.ValidateInputData(registrationRequestModel.Email, registrationRequestModel.Password);
+            var registeredUser = _userService.Register(registrationRequestModel.Email, registrationRequestModel.Password);
 
-            var responseUser = _userFactory.Create(registeredUser);
-
-            return responseUser;
+            return _userFactory.Create(registeredUser);
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("actions/login")]
+        public string Login([FromBody] LoginUserFromRequestModel loginRequestModel)
+        {
+            _validator.ValidateInputData(loginRequestModel.Email, loginRequestModel.Password);
+            var loggedUser = _userService.Login(loginRequestModel.Email, loginRequestModel.Password);
+            var token = _userFactory.Create(loggedUser);
+
+            return token;
+        }
+
     }
 }

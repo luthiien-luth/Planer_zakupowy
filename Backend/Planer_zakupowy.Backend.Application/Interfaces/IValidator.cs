@@ -2,6 +2,6 @@
 {
     public interface IValidator
     {
-        void ValidateRegistrationData(string email, string password);
+        void ValidateInputData(string email, string password);
     }
 }
