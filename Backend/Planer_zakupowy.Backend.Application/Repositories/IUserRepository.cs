@@ -6,5 +6,6 @@ namespace Planer_zakupowy.Backend.Application.Repositories
     {
         User? GetOrDefault(string email);
         User Register(User user);
+        bool CheckPasswordForUser(string email, string password);
     }
 }

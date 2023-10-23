@@ -5,5 +5,7 @@ namespace Planer_zakupowy.Backend.Application.Interfaces
     public interface IUserService
     {
         User Register(string email, string password);
+
+        User Login(string email, string password);
     }
 }

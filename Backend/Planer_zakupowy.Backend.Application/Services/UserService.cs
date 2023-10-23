@@ -19,12 +19,31 @@ namespace Planer_zakupowy.Backend.Application.Services
             var user = _userRepository.GetOrDefault(email);
 
             if (user != default)
+            {
                 throw new InvalidDataProvidedException($"Użytkownik z emailem {email} już istnieje.");
+            }
 
             var registeredUser = new User(email, password);
             _userRepository.Register(registeredUser);
 
             return registeredUser;
+        }
+
+        public User Login(string email, string password)
+        {
+            var user = _userRepository.GetOrDefault(email); 
+
+            if (user == default)
+            {
+                throw new InvalidDataProvidedException($"Nie istnieje użytkownik z emailem {email}");
+            }
+
+            if (!_userRepository.CheckPasswordForUser(email, password))
+            {
+                throw new InvalidDataProvidedException("Podane hasło jest nieprawidłowe.");
+            }
+
+            return user;
         }
     }
 }

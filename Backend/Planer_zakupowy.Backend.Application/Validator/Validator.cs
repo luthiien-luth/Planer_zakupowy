@@ -6,7 +6,7 @@ namespace Planer_zakupowy.Backend.Application.Validator
 {
     public class Validator : IValidator
     {
-        public void ValidateRegistrationData(string email, string password)
+        public void ValidateInputData(string email, string password)
         {
             if (string.IsNullOrWhiteSpace(email))
             {
