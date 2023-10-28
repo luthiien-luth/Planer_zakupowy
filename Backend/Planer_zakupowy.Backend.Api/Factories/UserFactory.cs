@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using Planer_zakupowy.Backend.Api.Factories.Interfaces;
 using Planer_zakupowy.Backend.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,7 +16,12 @@ namespace Planer_zakupowy.Backend.Api.Factories
         {
             _config = config;
         }
-        public string Create(User user)
+        public string CreateUserSnapshot(User user)
+        {
+            return JsonConvert.SerializeObject(user);
+        }
+
+        public string CreateToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

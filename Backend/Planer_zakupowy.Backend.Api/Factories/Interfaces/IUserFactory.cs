@@ -4,6 +4,7 @@ namespace Planer_zakupowy.Backend.Api.Factories.Interfaces
 {
     public interface IUserFactory
     {
-        string Create(User user);
+        string CreateUserSnapshot(User user);
+        string CreateToken(User user);
     }
 }

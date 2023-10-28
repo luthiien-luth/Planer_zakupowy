@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Planer_zakupowy.Backend.Api.Factories.Interfaces;
 using Planer_zakupowy.Backend.Api.RequestModels;
 using Planer_zakupowy.Backend.Application.Interfaces;
-using System.Security.Claims;
 
 namespace Planer_zakupowy.Backend.Api.Controllers
 {
@@ -30,7 +29,7 @@ namespace Planer_zakupowy.Backend.Api.Controllers
             _validator.ValidateInputData(registrationRequestModel.Email, registrationRequestModel.Password);
             var registeredUser = _userService.Register(registrationRequestModel.Email, registrationRequestModel.Password);
 
-            return _userFactory.Create(registeredUser);
+            return _userFactory.CreateUserSnapshot(registeredUser);
         }
 
         [AllowAnonymous]
@@ -40,10 +39,8 @@ namespace Planer_zakupowy.Backend.Api.Controllers
         {
             _validator.ValidateInputData(loginRequestModel.Email, loginRequestModel.Password);
             var loggedUser = _userService.Login(loginRequestModel.Email, loginRequestModel.Password);
-            var token = _userFactory.Create(loggedUser);
 
-            return token;
+            return _userFactory.CreateToken(loggedUser);
         }
-
     }
 }
