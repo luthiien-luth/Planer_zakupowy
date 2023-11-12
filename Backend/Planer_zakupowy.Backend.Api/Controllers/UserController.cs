@@ -24,7 +24,7 @@ namespace Planer_zakupowy.Backend.Api.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("actions/register")]
-        public string Register([FromBody] RegisterUserRequestModel registrationRequestModel)
+        public string Register([FromBody] RegisterRequestModel registrationRequestModel)
         {
             _validator.ValidateInputData(registrationRequestModel.Email, registrationRequestModel.Password);
             var registeredUser = _userService.Register(registrationRequestModel.Email, registrationRequestModel.Password);
@@ -35,7 +35,7 @@ namespace Planer_zakupowy.Backend.Api.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("actions/login")]
-        public string Login([FromBody] LoginUserFromRequestModel loginRequestModel)
+        public string Login([FromBody] LoginRequestModel loginRequestModel)
         {
             _validator.ValidateInputData(loginRequestModel.Email, loginRequestModel.Password);
             var loggedUser = _userService.Login(loginRequestModel.Email, loginRequestModel.Password);

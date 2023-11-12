@@ -16,8 +16,21 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var connection = builder.Configuration.GetConnectionString("DBConnection");
+var allowSpecificOrigins = "allowSpecificOrigins";
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: allowSpecificOrigins,
+                      policy =>
+                      {
+                          policy
+                          .WithOrigins("http://localhost:3000",
+                              "http://localhost:4200")
+                          .WithMethods("GET", "POST")
+                          .AllowAnyHeader();
+                      });
+});
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<Planer_zakupowyDbContext>(opt => opt.UseSqlServer(connection));
 builder.Services.AddTransient<IUserFactory, UserFactory>();
@@ -44,6 +57,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors(allowSpecificOrigins);
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
