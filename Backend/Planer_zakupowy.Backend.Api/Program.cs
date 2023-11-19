@@ -12,6 +12,7 @@ using Planer_zakupowy.Backend.DataAccess;
 using Planer_zakupowy.Backend.DataAccess.Factories;
 using Planer_zakupowy.Backend.DataAccess.Factories.Interfaces;
 using Planer_zakupowy.Backend.DataAccess.Repositories;
+using Planer_zakupowy.Backend.DataAccess.Seeder;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,12 +33,13 @@ builder.Services.AddCors(options =>
                       });
 });
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<Planer_zakupowyDbContext>(opt => opt.UseSqlServer(connection));
+builder.Services.AddDbContext<PlanerZakupowyDbContext>(opt => opt.UseSqlServer(connection));
 builder.Services.AddTransient<IUserFactory, UserFactory>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IValidator, Validator>();
 builder.Services.AddTransient<IUserDbFactory, UserDbFactory>();
+builder.Services.AddScoped<ProductsSeeder>();
 builder.Services.AddTransient<ErrorHandlingMiddleware>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -56,6 +58,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<ProductsSeeder>();
+await seeder.Seed();
 
 app.UseCors(allowSpecificOrigins);
 app.UseSwagger();

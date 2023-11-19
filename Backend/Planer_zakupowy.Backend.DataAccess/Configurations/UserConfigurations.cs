@@ -8,11 +8,17 @@ namespace Planer_zakupowy.Backend.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.Property(u => u.Email)
+            builder
+                .Property(u => u.Email)
                 .IsRequired();
 
-            builder.Property(u => u.Password)
+            builder
+                .Property(u => u.Password)
                 .IsRequired();
+
+            builder
+                .HasMany(u => u.ShoppingLists)
+                .WithOne(l => l.User);
         }
     }
 }

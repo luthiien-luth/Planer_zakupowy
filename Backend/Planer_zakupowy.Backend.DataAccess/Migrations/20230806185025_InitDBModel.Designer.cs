@@ -11,7 +11,7 @@ using Planer_zakupowy.Backend.DataAccess;
 
 namespace Planer_zakupowy.Backend.DataAccess.Migrations
 {
-    [DbContext(typeof(Planer_zakupowyDbContext))]
+    [DbContext(typeof(PlanerZakupowyDbContext))]
     [Migration("20230806185025_InitDBModel")]
     partial class InitDBModel
     {
