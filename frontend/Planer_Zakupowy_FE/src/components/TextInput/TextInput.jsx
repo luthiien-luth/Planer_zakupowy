@@ -8,7 +8,7 @@ export const TextInput = ({ formControl, label, rules }) => {
         <Controller
             control={formControl}
             name={name}
-            rules={rules}
+            rules={('require', rules)}
             render={() => (
                 <TextField id="outlined-basic" label={label} variant="outlined" style={styles} />
             )}

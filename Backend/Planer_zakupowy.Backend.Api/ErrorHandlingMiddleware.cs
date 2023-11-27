@@ -1,4 +1,4 @@
-﻿using Planer_zakupowy.Backend.Domain.Exceptions;
+﻿using Planer_zakupowy.Backend.Application.Exceptions;
 
 namespace Planer_zakupowy.Backend.Api
 {
@@ -16,7 +16,7 @@ namespace Planer_zakupowy.Backend.Api
                 {
                     case InvalidDataProvidedException:
                         context.Response.StatusCode = 400;
-                        await context.Response.WriteAsync(ex.Message);
+                        await context.Response.WriteAsJsonAsync(ex.Message);
                         break;
                 }
             }

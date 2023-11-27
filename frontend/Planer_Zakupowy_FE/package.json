@@ -39,7 +39,7 @@
         "test": "react-app-rewired test",
         "eject": "react-scripts eject",
         "lint": "eslint --fix src/**/*.js src/**/*.jsx",
-        "prepare": "cd ../.. && husky install frontend/planer_zakupowy_fe/.husky",
+        "prepare": "cd ../.. && husky install frontend/Planer_Zakupowy_FE/.husky",
         "format": "prettier --write 'src/**/*.{js,jsx}'"
     },
     "lint-staged": {

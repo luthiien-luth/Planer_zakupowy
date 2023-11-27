@@ -1,5 +1,6 @@
-﻿using Planer_zakupowy.Backend.Domain.Entities;
-using Planer_zakupowy.Backend.Domain.Repositories;
+﻿using Planer_zakupowy.Backend.Application.Repositories;
+using Planer_zakupowy.Backend.DataAccess.Factories.Interfaces;
+using Planer_zakupowy.Backend.Domain.Entities;
 using UserDb = Planer_zakupowy.Backend.DataAccess.Models.User;
 
 namespace Planer_zakupowy.Backend.DataAccess.Repositories
@@ -7,23 +8,25 @@ namespace Planer_zakupowy.Backend.DataAccess.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly Planer_zakupowyDbContext _context;
+        private readonly IUserDbFactory _factory;
 
-        public UserRepository(Planer_zakupowyDbContext context)
+        public UserRepository(Planer_zakupowyDbContext context, IUserDbFactory factory)
         {
             _context = context;
+            _factory = factory;
         }
-
+       
         public User? GetOrDefault(string email)
         {
             var userDb = _context.Users
                 .FirstOrDefault(u => u.Email == email);
 
             if (userDb == default)
+            {
                 return default;
+            }
 
-            var user = new User(userDb.Id, userDb.Email, userDb.Password);
-
-            return user;
+            return _factory.Create(userDb);
         }
 
         public User Register(User user)
@@ -39,6 +42,19 @@ namespace Planer_zakupowy.Backend.DataAccess.Repositories
             _context.SaveChanges();
 
             return user;
+        }
+
+        public bool CheckPasswordForUser(string email, string password)
+        {
+            var userDb = _context.Users
+                .FirstOrDefault(u => u.Email == email && u.Password == password);
+
+            if(userDb == default)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using Planer_zakupowy.Backend.Domain.Entities;
 
-namespace Planer_zakupowy.Backend.Domain.Interfaces
+namespace Planer_zakupowy.Backend.Application.Interfaces
 {
     public interface IUserService
     {
         User Register(string email, string password);
+
+        User Login(string email, string password);
     }
 }
