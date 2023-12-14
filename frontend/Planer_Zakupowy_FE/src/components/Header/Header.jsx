@@ -18,7 +18,7 @@ export function Header({ title }) {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: '100vh'
+                    height: '50vh'
                 }}>
                 <Typography variant="h2" gutterBottom>
                     {title}
