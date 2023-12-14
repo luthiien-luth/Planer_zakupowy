@@ -1,10 +1,10 @@
 import Header from '../Header';
 import Footer from './Footer';
 
-function Layout() {
+function Layout({ children }) {
     return (
         <>
-            <Header title="Planer zakupowy" />
+            <Header title="Planer zakupowy" /> {children}
             <Footer />
         </>
     );
