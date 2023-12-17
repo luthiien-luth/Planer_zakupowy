@@ -7,10 +7,10 @@ namespace Planer_zakupowy.Backend.DataAccess.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly Planer_zakupowyDbContext _context;
+        private readonly PlanerZakupowyDbContext _context;
         private readonly IUserDbFactory _factory;
 
-        public UserRepository(Planer_zakupowyDbContext context, IUserDbFactory factory)
+        public UserRepository(PlanerZakupowyDbContext context, IUserDbFactory factory)
         {
             _context = context;
             _factory = factory;
